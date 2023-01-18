@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.cod3r.facade.callCenter.model.Card;
 import br.com.cod3r.facade.callCenter.model.Register;
 
-public class SecurityService {
+class SecurityService {
 	private CardService cardService;
 	private RegisterService registerService;
 	

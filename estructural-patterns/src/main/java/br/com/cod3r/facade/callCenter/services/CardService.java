@@ -5,12 +5,12 @@ import java.util.Map;
 
 import br.com.cod3r.facade.callCenter.model.Card;
 
-public class CardService {
+class CardService {
 	private Map<Long, Card> memory;
 	
 	public CardService() {
 		memory = new HashMap<>();
-		memory.put(123456L, new Card(123456L, 11223344L));
+		memory.put(21355L, new Card(21355L, 6846468L));
 	}
 
 	public Card getCardByUser(Long l) {

@@ -10,12 +10,12 @@ import java.util.Map;
 import br.com.cod3r.facade.callCenter.model.Card;
 import br.com.cod3r.facade.callCenter.model.Register;
 
-public class RegisterService {
+class RegisterService {
 	private Map<Long, List<Register>> memory;
 	
 	public RegisterService() {
-		memory = new HashMap<Long, List<Register>>();
-		memory.put(11223344L, new ArrayList<>(Arrays.asList(
+		memory = new HashMap<>();
+		memory.put(6846468L, new ArrayList<>(Arrays.asList(
 				new Register("McDonalds", 15d, new Date()),
 				new Register("Pizza Hut", 25d, new Date()),
 				new Register("Nike Store", 50d, new Date())
