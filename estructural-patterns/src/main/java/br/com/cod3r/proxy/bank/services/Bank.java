@@ -6,10 +6,10 @@ import java.util.Map;
 import br.com.cod3r.proxy.bank.model.User;
 
 public class Bank implements BankOperations {
-	private Map<Long, User> userDatabase;
+	private final Map<Long, User> userDatabase;
 	
 	public Bank() {
-		userDatabase = new HashMap<Long, User>();
+		userDatabase = new HashMap<>();
 		userDatabase.put(123L, new User("User #1", 123L, "1234", 1000L));
 		userDatabase.put(456L, new User("User #2", 456L, "9999", 200L));
 	}
@@ -22,8 +22,8 @@ public class Bank implements BankOperations {
 			return;
 		}
 		user.setBalance(user.getBalance() + amount);
-		System.out.println(String.format("%s +%d. New Balance: %d", 
-				user.getName(), amount, user.getBalance()));
+		System.out.printf("%s +%d. New Balance: %d\n",
+				user.getName(), amount, user.getBalance());
 	}
 
 	@Override
@@ -42,8 +42,8 @@ public class Bank implements BankOperations {
 			return;
 		}
 		user.setBalance(user.getBalance() - amount);
-		System.out.println(String.format("%s -%d. New Balance: %d", 
-				user.getName(), amount, user.getBalance()));
+		System.out.printf("%s -%d. New Balance: %d\n",
+				user.getName(), amount, user.getBalance());
 	}
 
 	@Override
@@ -58,8 +58,8 @@ public class Bank implements BankOperations {
 			return;
 		}
 		user.setPassword(newPassword);
-		System.out.println(String.format("%s's password updated successfuly!", 
-				user.getName()));
+		System.out.printf("%s's password updated successfuly!\n",
+				user.getName());
 	}
 
 }
