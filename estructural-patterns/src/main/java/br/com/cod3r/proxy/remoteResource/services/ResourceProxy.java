@@ -2,8 +2,7 @@ package br.com.cod3r.proxy.remoteResource.services;
 
 public class ResourceProxy implements Resource {
 	private Resource realResource;
-	private String validToken = "v@lid!";
-	private String tokenProvided;
+	private final String tokenProvided;
 	
 	public ResourceProxy(String tokenProvided) {
 		this.tokenProvided = tokenProvided;
@@ -11,6 +10,7 @@ public class ResourceProxy implements Resource {
 
 	@Override
 	public String getData() {
+		String validToken = "v@lid!";
 		if(!tokenProvided.equals(validToken)) return "Invalid Token";
 		if(realResource == null) {
 			try {

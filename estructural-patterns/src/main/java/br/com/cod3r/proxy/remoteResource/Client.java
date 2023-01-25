@@ -7,14 +7,18 @@ import java.util.Date;
 
 import br.com.cod3r.proxy.remoteResource.services.Resource;
 import br.com.cod3r.proxy.remoteResource.services.ResourceImpl;
+import br.com.cod3r.proxy.remoteResource.services.ResourceProxy;
 
 public class Client {
 
 	public static void main(String[] args) throws InterruptedException, IOException {
-		Resource resource = new ResourceImpl();
+		Resource resource = new ResourceProxy("v@lid!");
+//		Resource resource = new ResourceProxy("Inv@lid!");
+//		Resource resource = new ResourceImpl();
+
 		BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
 		boolean exit = false;
-		while(true) {
+		while(!exit) {
 			System.out.print("This is your options?:\n\t1-Current date"
 					+ "\n\t...Other Options\n\t9-Get Resource's data"
 					+ "\n\t0-Exit\nWhat do you want? ");
@@ -27,7 +31,6 @@ public class Client {
 				default: System.out.println("Processing other options"); break;
 			}
 			System.out.println("\n\n");
-			if(exit) break;
 		}
 		System.out.println("Bye!");
 	}
