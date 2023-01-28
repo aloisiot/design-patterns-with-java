@@ -47,7 +47,7 @@ public class Client {
 
 		Caretaker<String> caretaker = new Caretaker<>();
 		save.addActionListener(event -> {
-			caretaker.add(originator.getCurrentState());
+			caretaker.add(originator.makeSnapshot());
 			String newItem = String.valueOf(caretaker.getHistoryList().size());
 			mementosList.addItem(newItem);
 			mementosList.setSelectedItem(newItem);

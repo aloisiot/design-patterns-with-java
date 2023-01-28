@@ -11,7 +11,7 @@ public class TextAreaWithMemory extends JTextArea {
 		super(rows, columns);
 	}
 
-	public TextAreaMemento getCurrentState() {
+	public TextAreaMemento makeSnapshot() {
 		return new TextAreaMemento(getText());
 	}
 
