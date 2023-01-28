@@ -11,6 +11,8 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 import br.com.cod3r.memento.swing.component.TextAreaWithMemory;
+import br.com.cod3r.memento.swing.component.TextAreaWithMemory.TextAreaMemento;
+import br.com.cod3r.memento.swing.memory.Caretaker;
 
 public class Client {
 
@@ -34,13 +36,46 @@ public class Client {
 		frame.add(scroll, BorderLayout.CENTER);
 		
 		JPanel bottomPanel = new JPanel(new FlowLayout());
-		JComboBox<String> mementosList = new JComboBox<String>();
+		JComboBox<String> mementosList = new JComboBox<>();
 		JButton save = new JButton("Save");
 		bottomPanel.add(mementosList);
 		bottomPanel.add(save);
 		
 		frame.add(bottomPanel, BorderLayout.SOUTH);
-		
+
+		// Pattern usage...
+
+		Caretaker<String> caretaker = new Caretaker<>();
+		save.addActionListener(event -> {
+			caretaker.add(originator.getCurrentState());
+			String newItem = String.valueOf(caretaker.getHistoryList().size());
+			mementosList.addItem(newItem);
+			mementosList.setSelectedItem(newItem);
+			originator.requestFocusInWindow();
+		});
+
+		mementosList.addActionListener(event -> {
+			originator.restore((TextAreaMemento) caretaker.get(mementosList.getSelectedIndex()));
+			originator.requestFocusInWindow();
+		});
+
+		next.addActionListener(event -> {
+			if(mementosList.getSelectedIndex() < mementosList.getItemCount() - 1) {
+				int nextItem = mementosList.getSelectedIndex() + 1;
+				originator.restore((TextAreaMemento) caretaker.get(nextItem));
+				mementosList.setSelectedIndex(nextItem);
+				previous.requestFocusInWindow();
+			}
+		});
+
+		previous.addActionListener(event -> {
+			if(mementosList.getSelectedIndex() > 0) {
+				int previousItem = mementosList.getSelectedIndex() - 1;
+				originator.restore((TextAreaMemento) caretaker.get(previousItem));
+				mementosList.setSelectedIndex(previousItem);
+				originator.requestFocusInWindow();
+			}
+		});
 		
 		frame.setSize(400,200);  
 		frame.setVisible(true);
