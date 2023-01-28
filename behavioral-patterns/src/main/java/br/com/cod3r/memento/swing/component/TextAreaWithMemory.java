@@ -26,7 +26,7 @@ public class TextAreaWithMemory extends JTextArea {
 			this.text = text;
 		}
 
-		public String getState() {
+		private String getState() {
 			return text;
 		}
 	}
