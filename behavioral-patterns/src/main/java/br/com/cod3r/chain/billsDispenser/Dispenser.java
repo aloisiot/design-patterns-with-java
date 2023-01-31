@@ -1,24 +1,26 @@
 package br.com.cod3r.chain.billsDispenser;
 
 public class Dispenser {
-	
-	public void withdraw(Integer ammount) {
-		Integer remaining = ammount;
-		System.out.println("Calculating bills set for $" + ammount);
-		if(remaining >= 50) {
-			int bills = remaining / 50;
-			remaining %= 50;
-			System.out.println(String.format("- %d bill(s) of $%d, $%d remaining", bills, 50, remaining));
+	private final Bill chain;
+
+	public Dispenser(Bill... bills) {
+		for(int i = 0; i < bills.length - 1; i++) {
+			Bill currentBill = bills[i];
+			currentBill.setNext(bills[i + 1]);
 		}
-		if(remaining >= 10) {
-			int bills = remaining / 10;
-			remaining %= 10;
-			System.out.println(String.format("- %d bill(s) of $%d, $%d remaining", bills, 10, remaining));
-		}
-		if(remaining >= 1) {
-			int bills = remaining / 1;
-			remaining %= 1;
-			System.out.println(String.format("- %d bill(s) of $%d, $%d remaining", bills, 1, remaining));
-		}
+		chain = bills[0];
+	}
+
+	public Dispenser() {
+		this(
+			new Bill(200), new Bill(100),
+			new Bill(50), new Bill(20),
+			new Bill(10), new Bill(5),
+			new Bill(2), new Bill(1)
+		);
+	}
+
+	public void withdraw(Integer amount) {
+		chain.execute(amount);
 	}
 }

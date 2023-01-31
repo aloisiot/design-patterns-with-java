@@ -7,5 +7,7 @@ public class Client {
 		atm.withdraw(230);
 		System.out.println("-----------");
 		atm.withdraw(66);
+		System.out.println("-----------");
+		atm.withdraw(2498);
 	}
 }
