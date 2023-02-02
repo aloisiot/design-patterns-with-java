@@ -22,9 +22,9 @@ public class Client {
 		Product mouse = new Product("Mouse", 10d, Category.ELETRONICS, 0.2d);
 		
 		Cart cart1 = new Cart(simpleBuyer1, Arrays.asList(notebook, shoes, shorts, mouse));
-		Cart cart2 = new Cart(simpleBuyer2, Arrays.asList(notebook, shoes, shorts, mouse));
-		Cart cart3 = new Cart(specialBuyer, Arrays.asList(notebook, shoes, shorts, mouse));
-		Cart cart4 = new Cart(specialBuyer2, Arrays.asList(notebook, shoes, shorts, mouse));
+		Cart cart2 = new Cart(simpleBuyer2, Arrays.asList(notebook, mouse));
+		Cart cart3 = new Cart(specialBuyer, Arrays.asList(shorts, mouse));
+		Cart cart4 = new Cart(specialBuyer2, Arrays.asList(shoes, shorts, mouse));
 		
 		BestOfferService service = new BestOfferService();
 		service.calculateBestOffer(cart1);
